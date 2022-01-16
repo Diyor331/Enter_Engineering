@@ -20,10 +20,11 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: Splash.routeName,
       routes: {
-        Splash.routeName: (context) => Splash(),
+        Splash.routeName: (context) => const Splash(),
         Home.routeName: (context) => Home(),
         Registration.routeName: (context) => Registration(),
         Login.routeName: (context) => Login(),
+        CovidPage.routeName: (context) => CovidPage(),
       },
     );
   }

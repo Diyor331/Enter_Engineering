@@ -39,6 +39,7 @@ dependencies:
   fl_chart: ^0.41.0
   horizontal_data_table: ^3.6.0
   data_table_2: ^2.2.0
+  webview_flutter: ^3.0.0
 
 dev_dependencies:
   flutter_test:

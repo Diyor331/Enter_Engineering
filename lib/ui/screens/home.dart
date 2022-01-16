@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:data_table_2/paginated_data_table_2.dart';
 import 'package:enter_engineering_test/ui/screens/auth/login.dart';
+import 'package:enter_engineering_test/ui/screens/screens.dart';
 import 'package:enter_engineering_test/util/env.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -29,6 +30,7 @@ class _HomeState extends State<Home> with WidgetsBindingObserver {
     "2018": 4,
     "2017": 6,
   };
+
   //Color for Pie diagram
   final colorList = <Color>[
     const Color(0xfffdcb6e),
@@ -56,6 +58,7 @@ class _HomeState extends State<Home> with WidgetsBindingObserver {
         centerTitle: true,
         title: const Text('Главная'),
         actions: [
+
           IconButton(
             onPressed: () {
               preferences.clear();
@@ -79,6 +82,35 @@ class _HomeState extends State<Home> with WidgetsBindingObserver {
             builder: (context, orientation) {
               return Column(
                 children: [
+                  InkWell(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) {
+                            return CovidPage();
+                          },
+                        ),
+                      );
+                    },
+                    child: Container(
+                      width: 100,
+                      height: 30,
+                      decoration: const BoxDecoration(
+                        color: Color(0xffE32227),
+                        borderRadius: BorderRadius.all(Radius.circular(25)),
+                      ),
+                      child: const Center(
+                        child: Text(
+                          'COVID-19',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
                   //PieChart
                   orientation == Orientation.portrait
                       ? Expanded(
