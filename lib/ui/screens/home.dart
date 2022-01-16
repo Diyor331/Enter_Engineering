@@ -82,7 +82,7 @@ class _HomeState extends State<Home> with WidgetsBindingObserver {
             builder: (context, orientation) {
               return Column(
                 children: [
-                  InkWell(
+                  orientation == Orientation.portrait ? InkWell(
                     onTap: () {
                       Navigator.push(
                         context,
@@ -110,7 +110,7 @@ class _HomeState extends State<Home> with WidgetsBindingObserver {
                         ),
                       ),
                     ),
-                  ),
+                  ) : const SizedBox(),
                   //PieChart
                   orientation == Orientation.portrait
                       ? Expanded(

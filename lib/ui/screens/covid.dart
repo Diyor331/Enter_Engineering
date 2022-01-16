@@ -27,9 +27,9 @@ class _CovidPageState extends State<CovidPage> {
         centerTitle: true,
         title: const Text('COVID-19'),
       ),
-      body: SizedBox(
+      body: const SizedBox(
         width: double.infinity,
-        child: const WebView(
+        child: WebView(
           initialUrl: 'https://www.ent-en.com/ru/covid-19.php',
         ),
       ),
