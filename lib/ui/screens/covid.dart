@@ -12,6 +12,7 @@ class CovidPage extends StatefulWidget {
   _CovidPageState createState() => _CovidPageState();
 }
 
+
 class _CovidPageState extends State<CovidPage> {
   @override
   void initState() {
@@ -25,7 +26,17 @@ class _CovidPageState extends State<CovidPage> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: const Text('COVID-19'),
+        elevation: 0.0,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back_ios,color: Colors.black,),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+        ),
+        title: const Text('COVID-19',style: TextStyle(
+          color: Colors.black,
+          fontWeight: FontWeight.w400,
+        ),),
       ),
       body: const SizedBox(
         width: double.infinity,

@@ -38,7 +38,7 @@ class _LoginState extends State<Login> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const Image(
-                  image: AssetImage('images/logo.png'),
+                  image: AssetImage('images/logo1.jpeg'),
                 ),
                 const SizedBox(height: 50),
                 //Login
@@ -90,7 +90,7 @@ class _LoginState extends State<Login> {
                         }
 
                         if (admin['login'] == loginController.text && admin['password'] == passwordController.text) {
-                          preferences.setString('auth', jsonEncode(admin));
+                          db.put('auth', admin);
                           Navigator.pushAndRemoveUntil(
                             context,
                             MaterialPageRoute(builder: (context) => Home()),
@@ -120,7 +120,7 @@ class _LoginState extends State<Login> {
                     style: TextStyle(
                       fontWeight: FontWeight.w400,
                       fontSize: 12,
-                      color: Color(0xffE5E5E5),
+                      color: Colors.black54,
                     ),
                   ),
                 )

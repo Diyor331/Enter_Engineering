@@ -1,7 +1,11 @@
 import 'dart:developer';
+import 'dart:io';
+import 'package:dio/adapter.dart';
+import 'package:enter_engineering_test/models/user.dart';
 import 'package:enter_engineering_test/ui/screens/screens.dart';
 import 'package:enter_engineering_test/util/env.dart';
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/adapters.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Splash extends StatefulWidget {
@@ -19,7 +23,12 @@ class _SplashState extends State<Splash> {
     //Get auth data and navigate to Home or Login
     Future.delayed(const Duration(milliseconds: 4000), () async {
       preferences = await SharedPreferences.getInstance();
-      if (preferences.getString('auth') == null) {
+      await Hive.initFlutter();
+      Hive.registerAdapter(LocalUsers());
+
+      db = await Hive.openBox('db');
+
+      if (db.get('auth') == null) {
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(
@@ -34,6 +43,12 @@ class _SplashState extends State<Splash> {
           ),
         );
       }
+
+      // Do not check http certificates
+      (dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate = (HttpClient client) {
+        client.badCertificateCallback = (X509Certificate cert, String host, int port) => true;
+        return client;
+      };
     });
     super.initState();
   }
@@ -41,7 +56,6 @@ class _SplashState extends State<Splash> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -49,7 +63,7 @@ class _SplashState extends State<Splash> {
           //Image
           Center(
             child: Image(
-              image: AssetImage('images/logo.png'),
+              image: AssetImage('images/logo1.jpeg'),
             ),
           ),
           SizedBox(height: 15),

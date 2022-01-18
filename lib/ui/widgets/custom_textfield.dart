@@ -57,7 +57,7 @@ class CustomTextField extends StatelessWidget {
         autofocus: autoFocus ?? false,
         readOnly: readOnly ?? false,
         style: const TextStyle(
-          color: Color(0xffE5E5E5),
+          color: Colors.black,
         ),
         textCapitalization: textCapitalization ??  TextCapitalization.sentences,
         keyboardType: keyboardType ?? TextInputType.text,
@@ -75,7 +75,7 @@ class CustomTextField extends StatelessWidget {
           labelText: label,
           hintText: hint,
           hintStyle: const TextStyle(
-            color: Color(0xffDBDAD8),
+            color: Colors.black45,
           ),
           floatingLabelBehavior: FloatingLabelBehavior.never,
         ),

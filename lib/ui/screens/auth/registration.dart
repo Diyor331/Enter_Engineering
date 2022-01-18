@@ -1,8 +1,10 @@
 import 'dart:convert';
 import 'dart:developer';
+import 'package:enter_engineering_test/models/user.dart';
 import 'package:enter_engineering_test/ui/widgets/custom_textfield.dart';
 import 'package:enter_engineering_test/util/env.dart';
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/adapters.dart';
 import '../screens.dart';
 
 class Registration extends StatefulWidget {
@@ -23,7 +25,23 @@ class _RegistrationState extends State<Registration> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: const Text('Регистрация'),
+        elevation: 0.0,
+        title: const Text(
+          'Регистрация',
+          style: TextStyle(
+            color: Colors.black,
+            fontWeight: FontWeight.w300,
+          ),
+        ),
+        leading: IconButton(
+          icon: const Icon(
+            Icons.arrow_back_ios,
+            color: Colors.black54,
+          ),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+        ),
       ),
       body: SafeArea(
         child: Container(
@@ -83,14 +101,14 @@ class _RegistrationState extends State<Registration> {
                       ),
                     ),
                     onPressed: () async {
-                      Map<String, dynamic> regForm = {
+                     var regForm = {
                         'login': loginController.text,
                         'password': passwordController.text,
                         'passwordConfirm': confirmPasswordController.text,
                       };
 
                       if (_regKey.currentState!.validate()) {
-                        preferences.setString('auth', jsonEncode(regForm));
+                        db.put('auth', regForm);
                         userLibrary.add({
                           'login': loginController.text,
                           'password': passwordController.text,
@@ -99,7 +117,7 @@ class _RegistrationState extends State<Registration> {
                         Navigator.pushAndRemoveUntil(
                           context,
                           MaterialPageRoute(builder: (context) => Home()),
-                              (Route<dynamic> route) => false,
+                          (Route<dynamic> route) => false,
                         );
                       }
                     },
